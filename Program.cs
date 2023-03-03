@@ -12,9 +12,12 @@ namespace Heist
             Dictionary<string, TeamMember> team1 = new();
 
             string nameResponse = "NAME";
+            Console.WriteLine("Choose your difficulty (0 to 100)");
+            int bankDifficulty = int.Parse(Console.ReadLine().Trim());
 
             while (nameResponse != "")
             {
+
 
                 Console.WriteLine("Enter team member's name: (Press enter to stop entering names and start a trial run)");
                 nameResponse = Console.ReadLine();
@@ -41,24 +44,34 @@ namespace Heist
             Console.WriteLine("How Many trial runs would you like to perform?");
             int trialRuns = int.Parse(Console.ReadLine());
 
+            int wins = 0;
+            int losses = 0;
 
             for (int i = 1; i <= trialRuns; i++)
             {
+
+
+
                 int luck = new Random().Next(-10, 11);
-                int bankDifficulty = 100 + luck;
+                bankDifficulty = bankDifficulty + luck;
                 int teamSkillLevel = team1.Sum(x => x.Value.Skill);
 
                 Console.WriteLine($"Your current team skill level is {teamSkillLevel}. The bank difficulty is {bankDifficulty}");
 
                 if (teamSkillLevel < bankDifficulty)
                 {
+
                     Console.WriteLine("You have failed");
+                    losses += 1;
                 }
                 else
                 {
                     Console.WriteLine("You have succeeded!");
+                    wins += 1;
                 }
             }
+            Console.WriteLine($"{wins} wins!");
+            Console.WriteLine($"{losses} losses :(");
 
         }
     }
