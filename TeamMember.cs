@@ -16,9 +16,9 @@ namespace Heist
             public int Skill {get; set;}
             public double Courage {get; set;}
 
-           public string MemberInformation()
-            {
-                return $"Name: {Name} | Skill Level: {Skill} | Courage: {Courage}";
-            }
+        //    public string MemberInformation()
+        //     {
+        //         return $"Name: {Name} | Skill Level: {Skill} | Courage: {Courage}";
+        //     }
     }
 }
