@@ -8,7 +8,9 @@ namespace Heist
     {
         static void Main(string[] args)
         {
-int bankDifficulty = 100;
+            int luck = new Random().Next(-10, 11);
+
+            int bankDifficulty = 100 + luck;
 
             Console.WriteLine("Plan Your Heist!");
             Dictionary<string, TeamMember> team1 = new();
@@ -32,30 +34,34 @@ int bankDifficulty = 100;
                 else
                 {
 
-            
-            Console.WriteLine($"What is {nameResponse}'s skill level? (0 to 100)");
-            int skillResponse = int.Parse(Console.ReadLine().Trim());
 
-            Console.WriteLine($"How courageous is {nameResponse}? (0 to 2)");
-            double courageResponse = double.Parse(Console.ReadLine().Trim());
+                    Console.WriteLine($"What is {nameResponse}'s skill level? (0 to 100)");
+                    int skillResponse = int.Parse(Console.ReadLine().Trim());
 
-            TeamMember newMember = new TeamMember(nameResponse, skillResponse, courageResponse);
+                    Console.WriteLine($"How courageous is {nameResponse}? (0 to 2)");
+                    double courageResponse = double.Parse(Console.ReadLine().Trim());
 
-            // Console.WriteLine(newMember.MemberInformation());
+                    TeamMember newMember = new TeamMember(nameResponse, skillResponse, courageResponse);
 
-                team1.Add($"{newMember.Name}", newMember);
+                    // Console.WriteLine(newMember.MemberInformation());
 
-                int teamSkillLevel = team1.Sum(x => x.Value.Skill);
+                    team1.Add($"{newMember.Name}", newMember);
 
-                if (teamSkillLevel < bankDifficulty){
-                    Console.WriteLine($"Based on your current team of {team1.Count} and combined skill level of {teamSkillLevel} you have failed");
-                }
-                else {
-                    Console.WriteLine($"Based on your current team of {team1.Count} and combined skill level of {teamSkillLevel} you have succeeded!");
-                }
+                    int teamSkillLevel = team1.Sum(x => x.Value.Skill);
 
-          Console.WriteLine("Would you like to enter another new team member? Y/N:");
-          response = Console.ReadLine().ToLower();
+                    Console.WriteLine($"Your current team skill level is {teamSkillLevel}. The bank difficulty is {bankDifficulty}");
+
+                    if (teamSkillLevel < bankDifficulty)
+                    {
+                        Console.WriteLine("You have failed");
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have succeeded!");
+                    }
+
+                    Console.WriteLine("Would you like to enter another new team member? Y/N:");
+                    response = Console.ReadLine().ToLower();
 
                 }
             }
